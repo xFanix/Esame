@@ -19,15 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class NuovoAppello extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField corsoText;
+	private JTextField luogoText;
 	private FrontController control = new FrontController();
 	private JButton okButton = new JButton("OK");
 	private JDatePanelImpl textData;
@@ -43,15 +40,15 @@ public class NuovoAppello extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(152, 52, 230, 28);
-		contentPanel.add(textField_1);
+		corsoText = new JTextField();
+		corsoText.setColumns(10);
+		corsoText.setBounds(152, 52, 230, 28);
+		contentPanel.add(corsoText);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(152, 91, 230, 28);
-		contentPanel.add(textField_2);
+		luogoText = new JTextField();
+		luogoText.setColumns(10);
+		luogoText.setBounds(152, 91, 230, 28);
+		contentPanel.add(luogoText);
 
 
 		
@@ -87,6 +84,12 @@ public class NuovoAppello extends JDialog {
 			{
 
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						creaAppello();
+					}
+				});
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
@@ -106,5 +109,8 @@ public class NuovoAppello extends JDialog {
 			comboBox.setBounds(152, 15, 230, 26);
 			contentPanel.add(comboBox);
 		}
+	}
+
+	private void creaAppello() {
 	}
 }

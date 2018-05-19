@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
+import database.AppelloDb;
 import database.CorsoDb;
 import database.ProfessoreDb;
 import database.StudenteDb;
@@ -16,6 +17,7 @@ public class FrontController {
 	private CorsoDb corso = new CorsoDb();
 	private ProfessoreDb prof = new ProfessoreDb();
 	private StudenteDb stud = new StudenteDb();
+	private AppelloDb appelloDb = new AppelloDb();
 	
 	public boolean CreaStudente(String nome, String cognome, String email, Date data){
 	String password=StringUtils.randomString(10);
@@ -46,7 +48,20 @@ public class FrontController {
 		}
 		return prof.creaprof(nome, cognome, email, username, password)>0;
 	}
-	
+
+	//Funzioni Appello
+	public boolean CancellaAppello(int id) {
+		return appelloDb.cancellaAppello(id);
+	}
+
+	public boolean ModificaAppello(int id, String nome, java.util.Date date, String luogo, String corso, String tipo) {
+		return appelloDb.modificaAppello(id, nome, date, luogo, corso, tipo);
+	}
+
+	public boolean CreaAppello(String nome, java.util.Date date, String luogo, String corso, String tipo) {
+		return appelloDb.creaapp(nome, date, luogo, corso, tipo);
+	}
+
 	public boolean AssegnaCorso(String nomecorso, String docente){
 		String[] partscor = nomecorso.split("-");
 		String part2cor = partscor[1];
