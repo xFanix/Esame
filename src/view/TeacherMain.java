@@ -38,8 +38,6 @@ public class TeacherMain extends JFrame {
 		contentPane.setLayout(null);
 		
 		table = new JTable();
-		String[] nomiColonne = {"ID","Corso", "Luogo", "Tipo", "Data", "Iscritti"};
-		dtm = new DefaultTableModel(nomiColonne,0);
 		this.createTable();
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -76,9 +74,7 @@ public class TeacherMain extends JFrame {
 				int dialogResult = JOptionPane.showConfirmDialog (null, "Sei sicuro di voler cancellare questo appello?","Attenzione",JOptionPane.YES_NO_OPTION);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					fc.CancellaAppello(id);
-					dtm.fireTableDataChanged();
-					table.setModel(dtm);
-					table.repaint();
+					createTable();
 				}
 			}
 		});
@@ -100,6 +96,8 @@ public class TeacherMain extends JFrame {
 	}
 
 	private void createTable() {
+		String[] nomiColonne = {"ID","Corso", "Luogo", "Tipo", "Data", "Iscritti"};
+		dtm = new DefaultTableModel(nomiColonne,0);
 		ArrayList<Appello> appelliList = new ArrayList<Appello>();
 		appelliList = fc.getAppelloByProf(Loginfo.getId());
 		for(Appello a : appelliList) {
