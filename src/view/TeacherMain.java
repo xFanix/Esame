@@ -27,6 +27,7 @@ public class TeacherMain extends JFrame {
 	private ModificaAppello modapp = new ModificaAppello (this,true);
 	private CancellaAppello canapp = new CancellaAppello (this,true);
 	private FrontController fc = new FrontController();
+	private DefaultTableModel dtm;
 
 	public TeacherMain() {
 		setTitle("Men\u00F9 Docente");
@@ -39,14 +40,8 @@ public class TeacherMain extends JFrame {
 		
 		table = new JTable();
 		String[] nomiColonne = {"ID","Corso", "Luogo", "Tipo", "Data", "Iscritti"};
-		DefaultTableModel dtm = new DefaultTableModel(nomiColonne,0);
-		ArrayList<Appello> appelliList = new ArrayList<Appello>();
-		appelliList = fc.getAppelloByProf(Loginfo.getId());
-		for(Appello a : appelliList) {
-			 Object[] data = {a.getId(),a.getNome(),a.getLuogo(),a.getTipo(),a.getData(), "0"};
-			 dtm.addRow(data);
-			}
-		table.setModel(dtm);
+		dtm = new DefaultTableModel(nomiColonne,0);
+		this.refreshTable();
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -79,9 +74,10 @@ public class TeacherMain extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int row = table.getSelectedRow();
 				int id = Integer.valueOf(table.getModel().getValueAt(row,0).toString());
-				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Save your Previous Note First?","Warning",JOptionPane.YES_NO_OPTION);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "Sei sicuro di voler cancellare questo appello?","Attenzione",JOptionPane.YES_NO_OPTION);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					fc.CancellaAppello(id);
+					refreshTable();
 				}
 			}
 		});
@@ -100,5 +96,15 @@ public class TeacherMain extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(10, 21, 514, 166);
 		contentPane.add(scrollPane);
+	}
+
+	private void refreshTable() {
+		ArrayList<Appello> appelliList = new ArrayList<Appello>();
+		appelliList = fc.getAppelloByProf(Loginfo.getId());
+		for(Appello a : appelliList) {
+			Object[] data = {a.getId(),a.getNome(),a.getLuogo(),a.getTipo(),a.getData(), "0"};
+			dtm.addRow(data);
+		}
+		table.setModel(dtm);
 	}
 }
