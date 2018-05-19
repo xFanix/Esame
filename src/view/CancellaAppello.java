@@ -43,4 +43,5 @@ public class CancellaAppello extends JDialog {
 		lblSicuroDiVoler.setBounds(23, 30, 163, 14);
 		contentPanel.add(lblSicuroDiVoler);
 	}
+
 }

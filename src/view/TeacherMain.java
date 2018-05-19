@@ -8,12 +8,8 @@ import model.Appello;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import controller.FrontController;
@@ -42,20 +38,21 @@ public class TeacherMain extends JFrame {
 		contentPane.setLayout(null);
 		
 		table = new JTable();
-		String[] nomiColonne = {"Corso", "Luogo", "Tipo", "Data", "Iscritti"};
+		String[] nomiColonne = {"ID","Corso", "Luogo", "Tipo", "Data", "Iscritti"};
 		DefaultTableModel dtm = new DefaultTableModel(nomiColonne,0);
 		ArrayList<Appello> appelliList = new ArrayList<Appello>();
 		appelliList = fc.getAppelloByProf(Loginfo.getId());
 		for(Appello a : appelliList) {
-			 Object[] data = {a.getNome(),a.getLuogo(),a.getTipo(),a.getData(), "0"};
+			 Object[] data = {a.getId(),a.getNome(),a.getLuogo(),a.getTipo(),a.getData(), "0"};
 			 dtm.addRow(data);
 			}
 		table.setModel(dtm);
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth(150);
-		table.getColumnModel().getColumn(2).setPreferredWidth(40);
-		table.getColumnModel().getColumn(3).setPreferredWidth(50);
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
+		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(3).setPreferredWidth(40);
 		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getColumnModel().getColumn(5).setPreferredWidth(50);
 		table.setBounds(10, 21, 485, 166);
 		contentPane.add(table);
 		
@@ -80,7 +77,12 @@ public class TeacherMain extends JFrame {
 		JButton btnCancellaAppello = new JButton("Cancella Appello");
 		btnCancellaAppello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				canapp.setVisible(true);
+				int row = table.getSelectedRow();
+				int id = Integer.valueOf(table.getModel().getValueAt(row,0).toString());
+				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to Save your Previous Note First?","Warning",JOptionPane.YES_NO_OPTION);
+				if(dialogResult == JOptionPane.YES_OPTION){
+					fc.CancellaAppello(id);
+				}
 			}
 		});
 		btnCancellaAppello.setBounds(281, 214, 128, 23);
