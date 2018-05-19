@@ -45,11 +45,13 @@
       <file leaf-file-name="NuovoAppello.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/NuovoAppello.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="75" column="45" lean-forward="false" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
+            <state relative-caret-position="479">
+              <caret line="103" column="30" lean-forward="false" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
               <folding>
-                <element signature="e#2807#2808#0" expanded="true" />
-                <element signature="e#2831#2832#0" expanded="true" />
+                <element signature="e#2559#2560#0" expanded="true" />
+                <element signature="e#2587#2588#0" expanded="true" />
+                <element signature="e#2842#2843#0" expanded="true" />
+                <element signature="e#2866#2867#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,8 +60,21 @@
       <file leaf-file-name="ModificaAppello.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/ModificaAppello.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-32">
-              <caret line="73" column="45" lean-forward="false" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
+            <state relative-caret-position="452">
+              <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+              <folding>
+                <element signature="e#2766#2767#0" expanded="true" />
+                <element signature="e#2790#2791#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppelloDb.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/database/AppelloDb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -99,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/src/controller/FrontController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="66" column="62" lean-forward="false" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
+              <caret line="81" column="62" lean-forward="false" selection-start-line="81" selection-start-column="62" selection-end-line="81" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -143,9 +158,9 @@
         <option value="$PROJECT_DIR$/src/view/TeacherMain.java" />
         <option value="$PROJECT_DIR$/src/controller/FrontController.java" />
         <option value="$PROJECT_DIR$/src/database/CorsoDb.java" />
-        <option value="$PROJECT_DIR$/src/view/ModificaAppello.java" />
         <option value="$PROJECT_DIR$/src/view/NuovoAppello.java" />
         <option value="$PROJECT_DIR$/src/view/AggiungiStudente.java" />
+        <option value="$PROJECT_DIR$/src/view/ModificaAppello.java" />
       </list>
     </option>
   </component>
@@ -817,7 +832,7 @@
     <entry file="file://$PROJECT_DIR$/src/controller/FrontController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="66" column="62" lean-forward="false" selection-start-line="66" selection-start-column="62" selection-end-line="66" selection-end-column="62" />
+          <caret line="81" column="62" lean-forward="false" selection-start-line="81" selection-start-column="62" selection-end-line="81" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -870,22 +885,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/database/AppelloDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/NuovoAppello.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="75" column="45" lean-forward="false" selection-start-line="75" selection-start-column="45" selection-end-line="75" selection-end-column="45" />
+        <state relative-caret-position="479">
+          <caret line="103" column="30" lean-forward="false" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
           <folding>
-            <element signature="e#2807#2808#0" expanded="true" />
-            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2559#2560#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2842#2843#0" expanded="true" />
+            <element signature="e#2866#2867#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/ModificaAppello.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-32">
-          <caret line="73" column="45" lean-forward="false" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
-          <folding />
+        <state relative-caret-position="452">
+          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+          <folding>
+            <element signature="e#2766#2767#0" expanded="true" />
+            <element signature="e#2790#2791#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
