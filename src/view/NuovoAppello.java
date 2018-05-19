@@ -73,7 +73,7 @@ public class NuovoAppello extends JDialog {
 		p.put("text.month", "mese");
 		p.put("text.year", "anno");
 		textData = new JDatePanelImpl(model, p);
-		textData.setBounds(152, 130, 230, 180);
+		textData.setBounds(152, 130, 230, 175);
 		contentPanel.add(textData);
 		
 		JLabel lblData = new JLabel("Data");

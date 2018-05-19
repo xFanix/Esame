@@ -1,7 +1,11 @@
 package view;
 
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -17,7 +21,7 @@ public class ModificaAppello extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
+	private JDatePanelImpl textData;
 
 
 	/**
@@ -27,7 +31,7 @@ public class ModificaAppello extends JDialog {
 		super(owner, modal);
 		setTitle("Aggiunta Appello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 200, 450, 250);
+		setBounds(400, 200, 450, 390);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -47,11 +51,7 @@ public class ModificaAppello extends JDialog {
 		textField_2.setColumns(10);
 		textField_2.setBounds(152, 91, 230, 28);
 		contentPanel.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(152, 130, 230, 28);
-		contentPanel.add(textField_3);
+
 		
 		JLabel lblCorso = new JLabel("Corso");
 		lblCorso.setBounds(79, 18, 46, 14);
@@ -64,6 +64,15 @@ public class ModificaAppello extends JDialog {
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(79, 98, 46, 14);
 		contentPanel.add(lblTipo);
+
+		UtilDateModel model = new UtilDateModel();
+		Properties p = new Properties();
+		p.put("text.today", "oggi");
+		p.put("text.month", "mese");
+		p.put("text.year", "anno");
+		textData = new JDatePanelImpl(model, p);
+		textData.setBounds(152, 130, 230, 175);
+		contentPanel.add(textData);
 		
 		JLabel lblData = new JLabel("Data");
 		lblData.setBounds(79, 137, 46, 14);
