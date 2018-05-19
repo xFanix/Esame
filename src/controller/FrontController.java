@@ -63,7 +63,7 @@ public class FrontController {
 		return corso.getNomeCorso(inizioNome);
 	}
 	
-	public ArrayList<Appello> getAppelloByProf(String idprof){
+	public ArrayList<Appello> getAppelloByProf(int idprof){
 		ArrayList<Corso> corsiList = corso.getCorsoByProf(idprof);
 		ArrayList<Appello> appelliList = new ArrayList<Appello>();
 		for(Corso c: corsiList){

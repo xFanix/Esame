@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+
+import controller.Loginfo;
 import database.DbConnect;
 import model.Appello;
 
@@ -43,7 +45,7 @@ public class TeacherMain extends JFrame {
 		String[] nomiColonne = {"Corso", "Luogo", "Tipo", "Data", "Iscritti"};
 		DefaultTableModel dtm = new DefaultTableModel(nomiColonne,0);
 		ArrayList<Appello> appelliList = new ArrayList<Appello>();
-		appelliList = fc.getAppelloByProf("1");
+		appelliList = fc.getAppelloByProf(Loginfo.getId());
 		for(Appello a : appelliList) {
 			 Object[] data = {a.getNome(),a.getLuogo(),a.getTipo(),a.getData(), "0"};
 			 dtm.addRow(data);

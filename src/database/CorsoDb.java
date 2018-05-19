@@ -29,7 +29,7 @@ public class CorsoDb {
 		return DbConnect.getinstance().queryupdate("update corso set idprof='"+iddocente+"' where id="+idcorso);
 	}
 	
-	public ArrayList<Corso> getCorsoByProf(String idprofessor){
+	public ArrayList<Corso> getCorsoByProf(int idprofessor){
 		ResultSet rs=DbConnect.getinstance().queryex("select * from corso where idprof="+idprofessor);
 		ArrayList<Corso> List = new ArrayList<Corso>();
 		try {
