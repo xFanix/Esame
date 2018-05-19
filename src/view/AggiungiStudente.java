@@ -114,7 +114,7 @@ import java.awt.event.ActionEvent;
 			p.put("text.month", "mese");
 			p.put("text.year", "anno");
 			textData = new JDatePanelImpl(model, p);
-			textData.setBounds(152, 130, 230, 170);
+			textData.setBounds(152, 130, 230, 175);
 			contentPanel.add(textData);
 			
 			JLabel lblDataDiNascita = new JLabel("Data di nascita");

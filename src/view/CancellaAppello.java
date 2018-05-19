@@ -1,7 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -33,7 +34,15 @@ public class CancellaAppello extends JDialog {
 		
 		JButton btnAnnulla = new JButton("Annulla");
 		btnAnnulla.setBounds(129, 65, 112, 23);
-		contentPanel.add(btnAnnulla);
+		{
+			btnAnnulla.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			btnAnnulla.setActionCommand("Cancel");
+			contentPanel.add(btnAnnulla);
+		}
 		
 		JLabel lblStaiPerCancellare = new JLabel("Stai per cancellare questo appello d'esame \r\n");
 		lblStaiPerCancellare.setBounds(22, 11, 240, 20);
