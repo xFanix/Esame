@@ -43,9 +43,9 @@ public class TeacherMain extends JFrame {
 		this.createTable();
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
-		table.getColumnModel().getColumn(2).setPreferredWidth(150);
+		table.getColumnModel().getColumn(2).setPreferredWidth(130);
 		table.getColumnModel().getColumn(3).setPreferredWidth(40);
-		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getColumnModel().getColumn(4).setPreferredWidth(70);
 		table.getColumnModel().getColumn(5).setPreferredWidth(50);
 		table.setBounds(10, 21, 485, 166);
 		contentPane.add(table);
@@ -76,6 +76,8 @@ public class TeacherMain extends JFrame {
 				int dialogResult = JOptionPane.showConfirmDialog (null, "Sei sicuro di voler cancellare questo appello?","Attenzione",JOptionPane.YES_NO_OPTION);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					fc.CancellaAppello(id);
+					dtm.fireTableDataChanged();
+					table.setModel(dtm);
 					table.repaint();
 				}
 			}
