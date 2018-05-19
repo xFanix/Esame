@@ -20,18 +20,18 @@ public class StudenteDb {
 		return rs!=null;
 	}
 
-	public boolean studesiste(String nomeutente, String password)throws Exception{
-		String query="select count(*) as conto from student where username = '"+nomeutente+"' and pass='"+password+"'";
+	public int studesiste(String nomeutente, String password)throws Exception{
+		String query="select id from student where username = '"+nomeutente+"' and pass='"+password+"'";
 		System.out.println(query);
 		ResultSet rs=DbConnect.getinstance().queryex(query);
-		int conto=0;
+		int id = -1;
 		try {
 			while(rs.next()){
-				conto=rs.getInt("conto");
+				id=rs.getInt("id");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return conto == 1;
+		return id;
 	}
 }

@@ -6,21 +6,21 @@ public class Loginfo {
     private static Loginfo ourInstance = new Loginfo();
     public static enum Ruoli {Admin, Studente, Docente};
     private static Ruoli ruolo;
-
-
-
     private static String username = new String();
     private static Date orariologin;
+    private static int id;
+
     public static Loginfo getInstance() {
         return ourInstance;
     }
     private Loginfo() {
     }
 
-    public static void memorizzalogin(String username1, Ruoli ruolo1){
+    public static void memorizzalogin(String username1, Ruoli ruolo1, int id){
         ruolo = ruolo1;
         username = username1;
         orariologin = new Date();
+        setId(id);
     }
 
     public static Ruoli getRuolo() {
@@ -45,6 +45,14 @@ public class Loginfo {
 
     public static void setOrariologin(Date orariologin) {
         Loginfo.orariologin = orariologin;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Loginfo.id = id;
     }
 
 }

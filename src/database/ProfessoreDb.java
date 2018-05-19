@@ -39,19 +39,19 @@ public class ProfessoreDb {
 		return List;
 	}
 
-	public boolean profesiste(String nomeutente, String password)throws Exception{
-		String query="select count(*) as conto from professore where username = '"+nomeutente+"' and pass='"+password+"'";
+	public int profesiste(String nomeutente, String password)throws Exception{
+		String query="select id from professore where username = '"+nomeutente+"' and pass='"+password+"'";
 		System.out.println(query);
 		ResultSet rs=DbConnect.getinstance().queryex(query);
-		int conto=0;
+		int id = -1;
 		try {
 			while(rs.next()){
-				conto=rs.getInt("conto");
+				id = rs.getInt("id");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return conto == 1;
+		return id;
 	}
 
 	public ArrayList<Corso> elencocorsi(String username){

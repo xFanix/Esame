@@ -74,22 +74,23 @@ public class FrontController {
 	}
 
 	public boolean login(String utente, String password, String type) throws Exception{
-	boolean valid = false;
+		int id = -1;
 		String pass=StringUtils.byteArrayToHexString(StringUtils.encrypt(password));
 		switch (type){
 			case "Admin":
-				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Admin);
+				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Admin, -1);
 				break;
 			case "Studente":
-				valid = stud.studesiste(utente, pass);
-				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Studente);
+				id = stud.studesiste(utente, pass);
+				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Studente, id);
 				break;
 			case "Docente":
-				valid = prof.profesiste(utente, pass);
-				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Docente);
+				id = prof.profesiste(utente, pass);
+				Loginfo.getInstance().memorizzalogin(utente, Loginfo.Ruoli.Docente, id);
 				break;
 		}
-		return valid;
+
+		return id > -1;
 	}
 
 	public Vector<Corso> getCorsiByUsername(){
