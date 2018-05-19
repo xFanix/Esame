@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 
 import controller.Loginfo;
-import database.DbConnect;
 import model.Appello;
 
 import java.awt.EventQueue;
@@ -41,7 +40,7 @@ public class TeacherMain extends JFrame {
 		table = new JTable();
 		String[] nomiColonne = {"ID","Corso", "Luogo", "Tipo", "Data", "Iscritti"};
 		dtm = new DefaultTableModel(nomiColonne,0);
-		this.refreshTable();
+		this.createTable();
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -77,7 +76,7 @@ public class TeacherMain extends JFrame {
 				int dialogResult = JOptionPane.showConfirmDialog (null, "Sei sicuro di voler cancellare questo appello?","Attenzione",JOptionPane.YES_NO_OPTION);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					fc.CancellaAppello(id);
-					refreshTable();
+					table.repaint();
 				}
 			}
 		});
@@ -98,7 +97,7 @@ public class TeacherMain extends JFrame {
 		contentPane.add(scrollPane);
 	}
 
-	private void refreshTable() {
+	private void createTable() {
 		ArrayList<Appello> appelliList = new ArrayList<Appello>();
 		appelliList = fc.getAppelloByProf(Loginfo.getId());
 		for(Appello a : appelliList) {
