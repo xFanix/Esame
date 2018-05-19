@@ -12,8 +12,8 @@ public class AppelloDb {
 	}
 
 	public boolean cancellaAppello(int id) {
-		ResultSet rs = DbConnect.getinstance().queryex("DELETE FROM appello where id ="+id);
-		return rs != null;
+		int cancellazione =  DbConnect.getinstance().queryupdate("DELETE FROM appello where id ="+id);
+		return cancellazione > 0;
 	}
 
 	public boolean modificaAppello(int id, String nome, java.util.Date date, String luogo, String corso, String tipo){
