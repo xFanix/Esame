@@ -29,4 +29,10 @@ public class Corso {
 	public void setCfu(int cfu) {
 		this.cfu = cfu;
 	}
+
+	@Override
+	public String toString() {
+		return getNome();
+	}
+
 }

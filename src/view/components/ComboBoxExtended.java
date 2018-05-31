@@ -1,4 +1,4 @@
-package view;
+package view.components;
 
 import model.Corso;
 
@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class ComboBoxCorso extends JComboBox implements ActionListener {
+public class ComboBoxExtended<T> extends JComboBox implements ActionListener {
 
-    public ComboBoxCorso(Vector<Corso> model)
+    public ComboBoxExtended(Vector<T> model)
     {
         super(model);
         this.addActionListener( this );
@@ -25,7 +25,7 @@ public class ComboBoxCorso extends JComboBox implements ActionListener {
     public void actionPerformed(ActionEvent e)
     {
         JComboBox comboBox = (JComboBox)e.getSource();
-        Corso item = (Corso)comboBox.getSelectedItem();
+        T item = (T)comboBox.getSelectedItem();
     }
 
     class ItemRenderer extends BasicComboBoxRenderer
@@ -39,17 +39,17 @@ public class ComboBoxCorso extends JComboBox implements ActionListener {
 
             if (value != null)
             {
-                Corso item = (Corso)value;
+                T item = (T)value;
                 if (item != null)
-                setText( item.getNome().toUpperCase() );
+                    setText( item.toString().toUpperCase() );
             }
 
-            if (index == -1)
+            /*if (index == -1)
             {
                 Corso item = (Corso)value;
                 if (item != null)
                 setText( item.getId() + ": "+item.getNome() );
-            }
+            }*/
 
 
             return this;

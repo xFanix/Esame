@@ -4,11 +4,15 @@ import controller.FrontController;
 import model.Corso;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import view.components.ComboBoxExtended;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -20,15 +24,17 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import static java.util.Arrays.asList;
+
 public class NuovoAppello extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField corsoText;
+	private ComboBoxExtended<String> tipoText;
 	private JTextField luogoText;
 	private FrontController control = new FrontController();
 	private JButton okButton = new JButton("OK");
 	private JDatePanelImpl textData;
-
+	private ComboBoxExtended<Corso> comboBoxCorso;
 
 	public NuovoAppello(JFrame owner, boolean modal) {
 		super(owner, modal);
@@ -39,11 +45,14 @@ public class NuovoAppello extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		corsoText = new JTextField();
-		corsoText.setColumns(10);
-		corsoText.setBounds(152, 52, 230, 28);
-		contentPanel.add(corsoText);
+
+		Vector<String> tipi = new Vector<String>();
+		tipi.add("Scritto");
+		tipi.add("Orale");
+		tipi.add("Laboratorio");
+		tipoText = new ComboBoxExtended<String>(tipi);
+		tipoText.setBounds(152, 52, 230, 28);
+		contentPanel.add(tipoText);
 		
 		luogoText = new JTextField();
 		luogoText.setColumns(10);
@@ -105,12 +114,14 @@ public class NuovoAppello extends JDialog {
 			}
 			Vector<Corso> corsi = control.getCorsiByUsername();
 			if (corsi.size()==0) okButton.setEnabled(false);
-				ComboBoxCorso comboBox = new ComboBoxCorso(corsi);
-			comboBox.setBounds(152, 15, 230, 26);
-			contentPanel.add(comboBox);
+				comboBoxCorso = new ComboBoxExtended(corsi);
+			comboBoxCorso.setBounds(152, 15, 230, 26);
+			contentPanel.add(comboBoxCorso);
 		}
 	}
 
 	private void creaAppello() {
+		String tipo = (String) tipoText.getModel().getElementAt(tipoText.getSelectedIndex());
+		String corso = ((Corso) comboBoxCorso.getModel().getSelectedItem()).toString();
 	}
 }
