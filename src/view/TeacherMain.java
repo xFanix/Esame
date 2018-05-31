@@ -52,6 +52,7 @@ public class TeacherMain extends JFrame {
 		btnAggiungiEsame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				appello.setVisible(true);
+				createTable();
 			}
 		});
 		btnAggiungiEsame.setBounds(10, 214, 128, 23);
@@ -61,6 +62,7 @@ public class TeacherMain extends JFrame {
 		btnModificaAppello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modapp.setVisible(true);
+				createTable();
 			}
 		});
 		btnModificaAppello.setBounds(142, 214, 134, 23);

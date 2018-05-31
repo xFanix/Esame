@@ -11,18 +11,13 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Properties;
-import java.util.Vector;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 import static java.util.Arrays.asList;
 
@@ -35,6 +30,7 @@ public class NuovoAppello extends JDialog {
 	private JButton okButton = new JButton("OK");
 	private JDatePanelImpl textData;
 	private ComboBoxExtended<Corso> comboBoxCorso;
+	private final int MIN_DAYS_EXAM = 20;
 
 	public NuovoAppello(JFrame owner, boolean modal) {
 		super(owner, modal);
@@ -122,6 +118,31 @@ public class NuovoAppello extends JDialog {
 
 	private void creaAppello() {
 		String tipo = (String) tipoText.getModel().getElementAt(tipoText.getSelectedIndex());
-		String corso = ((Corso) comboBoxCorso.getModel().getSelectedItem()).toString();
+		Corso corso = ((Corso) comboBoxCorso.getModel().getSelectedItem());
+		String luogo = luogoText.getText();
+		Date data=(Date)textData.getModel().getValue();
+		LocalDate examDate;
+		try {
+			examDate = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this, "Data non inserita", "Errore",JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		LocalDate now = LocalDate.now();
+		long days = ChronoUnit.DAYS.between(now, examDate);
+		if(days < MIN_DAYS_EXAM) {
+			JOptionPane.showMessageDialog(this, "La data d'esame deve essere ad almeno "+MIN_DAYS_EXAM+" giorni da oggi", "Errore",JOptionPane.ERROR_MESSAGE);
+			return;
+		} else if (luogo.trim().length() == 0) {
+			JOptionPane.showMessageDialog(this, "Il luogo non può essere vuoto", "Errore",JOptionPane.ERROR_MESSAGE);
+			return;
+		} else {
+			if(control.creaCorso(corso.getId(),tipo,examDate,luogo)) {
+				JOptionPane.showMessageDialog(this,"Appello creato con successo");
+			} else {
+				JOptionPane.showMessageDialog(this,"Errore nella creazione dell'appello");
+
+			}
+		}
 	}
 }
