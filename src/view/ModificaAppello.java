@@ -1,16 +1,21 @@
 package view;
 
+import controller.FrontController;
 import model.Appello;
+import model.Corso;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import view.components.ComboBoxExtended;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,17 +28,19 @@ import javax.swing.JLabel;
 public class ModificaAppello extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField corsoText;
+	private ComboBoxExtended<String> tipoText;
+	private ComboBoxExtended<Corso> comboBoxCorso;
+	//private JTextField corsoText;
 	private JTextField luogoText;
-	private JTextField tipoText;
+	//private JTextField tipoText;
 	private JDatePanelImpl textData;
 	private int appelloID;
-
+	private JButton okButton;
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModificaAppello(JFrame owner, boolean modal) {
+	public ModificaAppello(JFrame owner, boolean modal, Vector<Corso> corsi) {
 		super(owner, modal);
 		setTitle("Aggiunta Appello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,18 +50,18 @@ public class ModificaAppello extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		corsoText = new JTextField();
-		corsoText.setBounds(152, 11, 230, 28);
-		contentPanel.add(corsoText);
-		corsoText.setColumns(10);
+
 		
 		luogoText = new JTextField();
 		luogoText.setColumns(10);
 		luogoText.setBounds(152, 52, 230, 28);
 		contentPanel.add(luogoText);
-		
-		tipoText = new JTextField();
-		tipoText.setColumns(10);
+
+		Vector<String> tipi = new Vector<String>();
+		tipi.add("Scritto");
+		tipi.add("Orale");
+		tipi.add("Laboratorio");
+		tipoText = new ComboBoxExtended<String>(tipi);
 		tipoText.setBounds(152, 91, 230, 28);
 		contentPanel.add(tipoText);
 
@@ -88,7 +95,7 @@ public class ModificaAppello extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				okButton.addActionListener(new ActionListener() {
 					@Override
@@ -109,6 +116,11 @@ public class ModificaAppello extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+
+			if (corsi.size()==0) okButton.setEnabled(false);
+			comboBoxCorso = new ComboBoxExtended(corsi);
+			comboBoxCorso.setBounds(152, 11, 230, 28);
+			contentPanel.add(comboBoxCorso);
 		}
 	}
 
@@ -123,5 +135,8 @@ public class ModificaAppello extends JDialog {
 		textData.getModel().setDay(date.getDayOfMonth());
 		textData.getModel().setMonth(date.getMonthValue());
 		textData.getModel().setYear(date.getYear());
+		tipoText.getModel().setSelectedItem(appello.getTipo());
+
+		comboBoxCorso.getModel().setSelectedItem(appello.getCorso());
 	}
 }

@@ -23,9 +23,9 @@ public class TeacherMain extends JFrame {
 	private JTable table;
 	private Iscritti iscritti = new Iscritti(this, true);
 	private NuovoAppello appello = new NuovoAppello(this, true);
-	private ModificaAppello modapp = new ModificaAppello (this,true);
 	private CancellaAppello canapp = new CancellaAppello (this,true);
 	private FrontController fc = new FrontController();
+	private ModificaAppello modapp = new ModificaAppello (this,true, fc.getCorsiByUsername());
 	private DefaultTableModel dtm;
 
 	public TeacherMain() {
