@@ -31,16 +31,22 @@ public class NuovoAppello extends JDialog {
 	private JDatePanelImpl textData;
 	private ComboBoxExtended<Corso> comboBoxCorso;
 	private final int MIN_DAYS_EXAM = 20;
+	private JTextField nomeCorso;
 
 	public NuovoAppello(JFrame owner, boolean modal) {
 		super(owner, modal);
 		setTitle("Aggiunta Appello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(400, 200, 450, 390);
+		setBounds(400, 200, 450, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+
+		nomeCorso = new JTextField();
+		nomeCorso.setColumns(10);
+		nomeCorso.setBounds(152, 91, 230, 28);
+		contentPanel.add(nomeCorso);
 
 		Vector<String> tipi = new Vector<String>();
 		tipi.add("Scritto");
@@ -52,7 +58,7 @@ public class NuovoAppello extends JDialog {
 
 		luogoText = new JTextField();
 		luogoText.setColumns(10);
-		luogoText.setBounds(152, 91, 230, 28);
+		luogoText.setBounds(152, 130, 230, 28);
 		contentPanel.add(luogoText);
 
 
@@ -61,13 +67,17 @@ public class NuovoAppello extends JDialog {
 		lblCorso.setBounds(79, 18, 46, 14);
 		contentPanel.add(lblCorso);
 
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setBounds(79, 59, 46, 14);
+		contentPanel.add(lblTipo);
+
 		JLabel lblLuogo = new JLabel("Luogo");
-		lblLuogo.setBounds(79, 59, 46, 14);
+		lblLuogo.setBounds(79, 98, 46, 14);
 		contentPanel.add(lblLuogo);
 
-		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(79, 98, 46, 14);
-		contentPanel.add(lblTipo);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setBounds(79, 135, 46, 14);
+		contentPanel.add(lblNome);
 
 		UtilDateModel model = new UtilDateModel();
 		Properties p = new Properties();
@@ -75,11 +85,11 @@ public class NuovoAppello extends JDialog {
 		p.put("text.month", "mese");
 		p.put("text.year", "anno");
 		textData = new JDatePanelImpl(model, p);
-		textData.setBounds(152, 130, 230, 175);
+		textData.setBounds(152, 172, 230, 175);
 		contentPanel.add(textData);
 
 		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(79, 137, 46, 14);
+		lblData.setBounds(79, 174, 46, 14);
 		contentPanel.add(lblData);
 
 		{

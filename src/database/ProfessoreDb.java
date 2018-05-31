@@ -74,10 +74,4 @@ public class ProfessoreDb {
 		return listacorsi;
 	}
 
-
-	public class InserisciAppello {
-		public int creaappello(String corso, String luogo, String tipo, java.util.Date data, int corsoid){
-			return DbConnect.getinstance().queryupdate("insert into appello(nome,data,luogo,tipo,corsoid) VALUES ('"+corso+"','"+data+"','"+luogo+"','"+tipo+"','"+corsoid+"')");
-		}
-	}
 }
