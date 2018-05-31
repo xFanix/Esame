@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 public class NuovoAppello extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField corsoText;
+	private JTextField tipoCorso;
 	private JTextField luogoText;
 	private FrontController control = new FrontController();
 	private JButton okButton = new JButton("OK");
@@ -40,10 +40,10 @@ public class NuovoAppello extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		corsoText = new JTextField();
-		corsoText.setColumns(10);
-		corsoText.setBounds(152, 52, 230, 28);
-		contentPanel.add(corsoText);
+		tipoCorso = new JTextField();
+		tipoCorso.setColumns(10);
+		tipoCorso.setBounds(152, 52, 230, 28);
+		contentPanel.add(tipoCorso);
 		
 		luogoText = new JTextField();
 		luogoText.setColumns(10);
