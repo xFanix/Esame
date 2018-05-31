@@ -43,10 +43,6 @@ public class NuovoAppello extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		nomeCorso = new JTextField();
-		nomeCorso.setColumns(10);
-		nomeCorso.setBounds(152, 91, 230, 28);
-		contentPanel.add(nomeCorso);
 
 		Vector<String> tipi = new Vector<String>();
 		tipi.add("Scritto");
@@ -61,6 +57,10 @@ public class NuovoAppello extends JDialog {
 		luogoText.setBounds(152, 130, 230, 28);
 		contentPanel.add(luogoText);
 
+		nomeCorso = new JTextField();
+		nomeCorso.setColumns(10);
+		nomeCorso.setBounds(152, 91, 230, 28);
+		contentPanel.add(nomeCorso);
 
 
 		JLabel lblCorso = new JLabel("Corso");
