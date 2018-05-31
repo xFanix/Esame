@@ -25,7 +25,7 @@ public class TeacherMain extends JFrame {
 	private NuovoAppello appello = new NuovoAppello(this, true);
 	private CancellaAppello canapp = new CancellaAppello (this,true);
 	private FrontController fc = new FrontController();
-	private ModificaAppello modapp = new ModificaAppello (this,true, fc.getCorsiByUsername());
+	private ModificaAppello modapp = new ModificaAppello (this,true);
 	private DefaultTableModel dtm;
 
 	public TeacherMain() {
@@ -57,7 +57,9 @@ public class TeacherMain extends JFrame {
 		});
 		btnAggiungiEsame.setBounds(10, 214, 128, 23);
 		contentPane.add(btnAggiungiEsame);
-		
+
+		modapp.setCorsi(fc.getCorsiByUsername());
+
 		JButton btnModificaAppello = new JButton("Modifica Appello");
 		btnModificaAppello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

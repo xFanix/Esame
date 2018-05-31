@@ -35,17 +35,14 @@ public class ModificaAppello extends JDialog {
 	//private JTextField tipoText;
 	private JDatePanelImpl textData;
 	private int appelloID;
-<<<<<<< HEAD
 	private JButton okButton;
-=======
 	private JTextField nomeCorso;
 
->>>>>>> a8c7f2f00f07202bdbba8cf2a114f08977369f77
 
 	/**
 	 * Create the dialog.
 	 */
-	public ModificaAppello(JFrame owner, boolean modal, Vector<Corso> corsi) {
+	public ModificaAppello(JFrame owner, boolean modal) {
 		super(owner, modal);
 		setTitle("Aggiunta Appello");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -130,10 +127,7 @@ public class ModificaAppello extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 
-			if (corsi.size()==0) okButton.setEnabled(false);
-			comboBoxCorso = new ComboBoxExtended(corsi);
-			comboBoxCorso.setBounds(152, 11, 230, 28);
-			contentPanel.add(comboBoxCorso);
+
 		}
 	}
 
@@ -141,6 +135,12 @@ public class ModificaAppello extends JDialog {
 
 	}
 
+	public void setCorsi(Vector<Corso> corsi) {
+		if (corsi.size()==0) okButton.setEnabled(false);
+		comboBoxCorso = new ComboBoxExtended(corsi);
+		comboBoxCorso.setBounds(152, 11, 230, 28);
+		contentPanel.add(comboBoxCorso);
+	}
 	public void setAppello(Appello appello){
 		appelloID = Integer.parseInt(appello.getId());
 		luogoText.setText(appello.getLuogo());
