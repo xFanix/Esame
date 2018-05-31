@@ -61,8 +61,14 @@ public class TeacherMain extends JFrame {
 		JButton btnModificaAppello = new JButton("Modifica Appello");
 		btnModificaAppello.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				modapp.setVisible(true);
-				createTable();
+				int row = table.getSelectedRow();
+				if (row >= 0) {
+					int id = Integer.valueOf(table.getModel().getValueAt(row, 0).toString());
+					ArrayList<Appello> appelloArrayList = fc.getAppelloById(id);
+					modapp.setAppello(appelloArrayList.get(0));
+					modapp.setVisible(true);
+					createTable();
+				}
 			}
 		});
 		btnModificaAppello.setBounds(142, 214, 134, 23);

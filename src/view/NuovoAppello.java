@@ -137,7 +137,7 @@ public class NuovoAppello extends JDialog {
 			JOptionPane.showMessageDialog(this, "Il luogo non può essere vuoto", "Errore",JOptionPane.ERROR_MESSAGE);
 			return;
 		} else {
-			if(control.creaCorso(corso.getId(),tipo,examDate,luogo)) {
+			if(control.creaAppello(corso.getId(),tipo,examDate,luogo)) {
 				JOptionPane.showMessageDialog(this,"Appello creato con successo");
 			} else {
 				JOptionPane.showMessageDialog(this,"Errore nella creazione dell'appello");

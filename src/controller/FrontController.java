@@ -1,5 +1,6 @@
 package controller;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -122,8 +123,15 @@ public class FrontController {
 	return model;
 	}
 
-	public boolean creaCorso(int idCorso, String tipo, LocalDate data, String luogo) {
+	public boolean creaAppello(int idCorso, String tipo, LocalDate data, String luogo) {
 		return false;
 	}
 
+	public boolean modificaAppello(){
+		return false;
+	}
+
+	public ArrayList<Appello> getAppelloById(int id){
+		return appelloDb.getAppelloById(id);
+	}
 }

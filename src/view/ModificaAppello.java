@@ -1,5 +1,6 @@
 package view;
 
+import model.Appello;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
@@ -7,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.JButton;
@@ -20,10 +23,11 @@ import javax.swing.JLabel;
 public class ModificaAppello extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField corsoText;
+	private JTextField luogoText;
+	private JTextField tipoText;
 	private JDatePanelImpl textData;
+	private int appelloID;
 
 
 	/**
@@ -39,20 +43,20 @@ public class ModificaAppello extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(152, 11, 230, 28);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		corsoText = new JTextField();
+		corsoText.setBounds(152, 11, 230, 28);
+		contentPanel.add(corsoText);
+		corsoText.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(152, 52, 230, 28);
-		contentPanel.add(textField_1);
+		luogoText = new JTextField();
+		luogoText.setColumns(10);
+		luogoText.setBounds(152, 52, 230, 28);
+		contentPanel.add(luogoText);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(152, 91, 230, 28);
-		contentPanel.add(textField_2);
+		tipoText = new JTextField();
+		tipoText.setColumns(10);
+		tipoText.setBounds(152, 91, 230, 28);
+		contentPanel.add(tipoText);
 
 		
 		JLabel lblCorso = new JLabel("Corso");
@@ -86,6 +90,12 @@ public class ModificaAppello extends JDialog {
 			{
 				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						modificaAppello();
+					}
+				});
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
@@ -100,5 +110,18 @@ public class ModificaAppello extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	private void modificaAppello(){
+
+	}
+
+	public void setAppello(Appello appello){
+		appelloID = Integer.parseInt(appello.getId());
+		luogoText.setText(appello.getLuogo());
+		LocalDate date = LocalDate.parse(appello.getData());
+		textData.getModel().setDay(date.getDayOfMonth());
+		textData.getModel().setMonth(date.getMonthValue());
+		textData.getModel().setYear(date.getYear());
 	}
 }
